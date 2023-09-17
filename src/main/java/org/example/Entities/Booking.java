@@ -73,16 +73,4 @@ public class Booking implements Serializable{
                 '}';
     }
 
-    BookingDAO bookingDAO = new BookingDAO();
-
-    public void saveBooking(Booking booking){
-        bookingDAO.create(booking);
-    }
-
-    public void removeBooking(Booking booking) {
-        bookingDAO.delete(booking);
-    }
-
-
-
 }

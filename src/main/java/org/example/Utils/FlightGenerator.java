@@ -16,7 +16,7 @@ public class FlightGenerator{
     private static Random random = new Random();
 
     public static int genCapacity(){
-        return random.nextInt();
+        return random.nextInt(20, 100);
     }
 
     public static Airline genAirline(){
@@ -66,8 +66,4 @@ public class FlightGenerator{
         return flights;
     }
 
-    public static void main(String[] args) {
-        FlightGenerator fg = new FlightGenerator();
-        fg.genFlight(20).forEach(f -> System.out.println(f));
-    }
 }

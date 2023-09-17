@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class BookingService {
     BookingDAO bookingDAO = new BookingDAO();
     FlightDAO flightDAO = new FlightDAO();
-    Booking booking = new Booking();
 
     public void getBookings(){
         bookingDAO.getAll().forEach(f -> System.out.println(f));
@@ -44,7 +43,7 @@ public class BookingService {
             Passenger passenger = new Passenger(name1, surname1);
             Booking bookNew = new Booking(flight2, passenger);
 
-            booking.saveBooking(bookNew);
+            saveBooking(bookNew);
         }
     }
 
@@ -56,7 +55,7 @@ public class BookingService {
         boolean bookingFound = false;
         for (Booking existingBooking : bookingDAO.getAll()) {
             if (existingBooking.getId() == bookingId) {
-                booking.removeBooking(existingBooking);
+                removeBooking(existingBooking);
                 bookingFound = true;
                 System.out.println("Booking ID " + bookingId + " canceled.");
                 break;
@@ -66,6 +65,14 @@ public class BookingService {
         if (!bookingFound) {
             System.out.println("Booking ID " + bookingId + " not found.");
         }
+    }
+
+    public void saveBooking(Booking booking){
+        bookingDAO.create(booking);
+    }
+
+    public void removeBooking(Booking booking) {
+        bookingDAO.delete(booking);
     }
 
 }
